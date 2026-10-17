@@ -313,6 +313,13 @@ button,input{font:inherit;color:inherit}
 .intro.acts .iskip{opacity:0;pointer-events:none}
 .ireplay{margin-top:18px;border:0;background:none;color:#8E9BC0;font-size:.8rem;cursor:pointer;text-decoration:underline;opacity:0;pointer-events:none;transition:opacity 1s}
 .intro.acts .ireplay{opacity:1;pointer-events:auto}
+.icred{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);pointer-events:auto;font-size:.72rem;letter-spacing:.06em;color:#8C9BC4;text-decoration:none;white-space:nowrap;opacity:0;transition:opacity 1.2s ease;z-index:2}
+.icred:hover,.icred:focus-visible{color:var(--ink)}
+.intro.titled .icred{opacity:1}
+@media (max-height:780px){
+  .intro.acts .ititle{pointer-events:auto;overflow-y:auto;place-content:safe center;padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+  .icred{position:static;transform:none;margin-top:6px}
+}
 .brand h1{cursor:pointer;pointer-events:auto}
 @media (max-width:760px){.iacts{grid-template-columns:1fr;gap:10px;margin-top:18px}.iact{padding:14px 16px}.ititle h1{letter-spacing:.16em;margin-left:.16em}}
 @media (prefers-reduced-motion:reduce){.iline,.ititle h1 span,.iacts,#introNet{transition:none!important}#introNet .e,#introNet .n{animation:none!important}}
@@ -647,6 +654,7 @@ html.lite *{transition-duration:0s!important}
       <button class="iact" data-go-intro="explorar"><span class="ic">◎</span><b>Explorar el universo</b><small>Recorre libremente el mapa de constelaciones.</small></button>
     </div>
     <button class="ireplay" id="ireplay">Ver la introducción completa</button>
+    <a class="icred" href="https://somosia.com.mx" target="_blank" rel="noopener">Creado por somosia.com.mx</a>
   </div>
   <button class="iskip" id="iskip">Saltar introducción ›</button>
 </div>
