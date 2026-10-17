@@ -603,7 +603,12 @@ body.routing .mtour{display:none!important}
 }
 html.big .hud{font-size:.8rem}
 @media (max-width:900px){html.big .card,html.big .index{width:auto}html.big .hud{left:16px;max-width:none}html.big .pathbar{left:16px;max-width:none}html.big .routebar{left:12px;right:12px;max-width:none;width:auto}}
-html.web [data-tab="socrates"],html.web [data-ksoc],html.web [data-soc-deb],html.web [data-soc-exp],html.web [data-soc-con]{display:none!important}
+html.web [data-tab="socrates"],html.web [data-ksoc],html.web [data-kvoz],html.web [data-voz-deb],html.web [data-soc-deb],html.web [data-soc-exp],html.web [data-soc-con]{display:none!important}
+.vozbox{margin-top:22px;padding:16px;border-radius:12px;border:1px solid rgba(255,216,115,.35);background:linear-gradient(160deg,rgba(255,216,115,.08),rgba(8,12,26,.6))}
+.vozbox h3{margin-top:0!important}
+.vozbox .socfree{flex-wrap:wrap}.vozbox .socfree input{min-width:200px}
+.msg .sav.av{overflow:hidden;font:15px var(--display);color:#fff;background:#334}
+.msg .sav.av img{width:100%;height:100%;object-fit:cover}
 /* Modo ligero: sin brillos ni animaciones continuas; cristal opaco (más rápido en equipos modestos) */
 html.lite .glass,html.lite .iact,html.lite .help,html.lite .deep{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 html.lite .glass{background:rgba(10,15,32,.96)}
@@ -696,7 +701,7 @@ html.lite *{transition-duration:0s!important}
 <div class="skychip glass" id="skychip" hidden><span>✦ Mi cielo · <b></b> encendidas</span><button>Salir</button></div>
 <div class="help learn" id="learn" hidden role="dialog" aria-modal="true" aria-labelledby="learnTitle"><div class="help-in glass">
   <div class="help-hd"><h2 id="learnTitle">Aprender</h2><button id="learnX">Cerrar ✕</button></div>
-  <div class="ltabs" role="tablist"><button role="tab" data-tab="rutas">Rutas</button><button role="tab" data-tab="debates">Debates</button><button role="tab" data-tab="experimentos">Experimentos</button><button role="tab" data-tab="conceptos">Conceptos</button><button role="tab" data-tab="socrates">Σ Sócrates</button><button role="tab" data-tab="repaso">Repaso</button><button role="tab" data-tab="cielo">Mi cielo</button></div>
+  <div class="ltabs" role="tablist"><button role="tab" data-tab="rutas">Rutas</button><button role="tab" data-tab="debates">Debates</button><button role="tab" data-tab="experimentos">Experimentos</button><button role="tab" data-tab="conceptos">Conceptos</button><button role="tab" data-tab="socrates">Σ Diálogos</button><button role="tab" data-tab="repaso">Repaso</button><button role="tab" data-tab="cielo">Mi cielo</button></div>
   <div id="learnBody"></div>
 </div></div>
 <div class="help" id="editdlg" hidden role="dialog" aria-modal="true" aria-label="Editar ficha"><div class="help-in glass"></div></div>
@@ -759,7 +764,7 @@ html.lite *{transition-duration:0s!important}
   <div class="hrow"><span class="hk"><span class="b">⚖ Debates</span></span><p>Grandes desacuerdos de la historia: lee ambas posturas y decide con quién estás.</p></div>
   <div class="hrow"><span class="hk"><span class="b">✧ Experimentos</span></span><p>Situaciones imaginarias, como la caverna o el velo de ignorancia; responde y compara con su autor.</p></div>
   <div class="hrow"><span class="hk"><span class="b">◇ Conceptos</span></span><p>Ideas como «dialéctica» o «virtud» y cómo las entendió cada pensador; también puedes verlas brillar en el mapa.</p></div>
-  <div class="hrow"><span class="hk"><span class="b">Σ Sócrates</span></span><p>Conversa con un Sócrates simulado con IA: no te da respuestas, te hace preguntas.</p></div>
+  <div class="hrow"><span class="hk"><span class="b">Σ Sócrates</span></span><p>Conversa con un Sócrates simulado con IA, que te hace preguntas, o <b>discute con cualquier pensador</b>: responde con sus propias ideas (simulación con IA).</p></div>
   <h3>Teclado</h3>
   <div class="hrow"><span class="hk"><kbd>←</kbd><kbd>→</kbd></span><p>Estrella anterior o siguiente.</p></div>
   <div class="hrow"><span class="hk"><kbd>Espacio</kbd></span><p>Iniciar o pausar el viaje.</p></div>
@@ -3515,7 +3520,8 @@ function renderDebates(){
     <p class="juego"><b>Lo que está en juego:</b> ${esc(d.juego)}</p>
     <div class="vote"><span class="lbl2">¿Con quién estás más de acuerdo?</span><div class="tools">${[["a",nm(d.a[0])],["b",nm(d.b[0])],["n","Con ninguno del todo"]].map(([k,l])=>`<button class="vbtn" data-vote="${k}" aria-pressed="${v===k}">${l}</button>`).join("")}</div>
     ${v?`<p class="mine">Tu postura quedó guardada. ¿Podrías defenderla? Sócrates te hará las preguntas difíciles.</p>`:""}</div>
-    <div class="tools"><button class="btn" data-soc-deb="${d.id}">Σ Defender mi postura ante Sócrates</button><button class="btn ghost" data-pathdeb="${d.id}">⇢ Ver en el mapa qué los une</button></div>`;
+    <div class="tools"><button class="btn ghost" data-voz-deb="${d.id}:a">⚔ Discute con ${nm(d.a[0])}</button><button class="btn ghost" data-voz-deb="${d.id}:b">⚔ Discute con ${nm(d.b[0])}</button></div>
+    <div class="tools" style="margin-top:8px"><button class="btn" data-soc-deb="${d.id}">Σ Defender mi postura ante Sócrates</button><button class="btn ghost" data-pathdeb="${d.id}">⇢ Ver en el mapa qué los une</button></div>`;
 }
 function renderExps(){
   const x=EXPERIMENTOS.find(e=>e.id===sub.experimentos);
@@ -3551,7 +3557,7 @@ function clearConcept(){ if(!conceptOn) return; conceptOn=null; conchip.hidden=t
 conchip.querySelector("[data-x]").onclick=()=>{ clearConcept(); if(selected) highlight(selected); };
 conchip.querySelector("[data-open]").onclick=()=>openLearn("conceptos",conceptOn);
 /* Sócrates con IA */
-function socTopic(kind,id){
+function socTopic(kind,id,tema){
   if(kind==="autor"){ const p=byId[id]; return {t:`las ideas de ${p.n}`,ctx:`Referencia sobre ${p.n} (${p.d}; ${p.s}): ${p.b} La pregunta que lo movió: ${ESENCIA[id][0]} Su gran aporte: ${ESENCIA[id][1]}`,autor:id}; }
   if(kind==="deb"){ const d=DEBATES.find(x=>x.id===id), v=reflex("deb_"+id), who=v==="a"?d.a[0]:v==="b"?d.b[0]:null;
     return {t:d.q,ctx:`Es un debate entre ${byId[d.a[0]].n} («${d.a[1]}») y ${byId[d.b[0]].n} («${d.b[1]}»). ${who?`La persona dice estar más de acuerdo con ${byId[who].n}: pídele que defienda esa postura y ponla a prueba.`:"La persona aún no toma partido: ayúdala a pensar ambas posturas."}`,autor:who||d.a[0]}; }
@@ -3559,9 +3565,27 @@ function socTopic(kind,id){
     return {t:`el experimento mental «${x.n}» de ${byId[x.a].n}`,ctx:`Planteamiento: ${x.s} Pregunta: ${x.q} ${v!=null&&x.o[+v]?`La persona respondió: «${x.o[+v][0]}».`:""} Conclusión del autor: ${x.c}`,autor:x.a}; }
   if(kind==="con"){ const c=CONCEPTOS.find(k=>k.id===id); return {t:`el concepto de ${c.n.toLowerCase()}`,ctx:`${c.d} Posturas: ${c.a.map(([a,t])=>byId[a].n+": "+t).join(" ")}`,autor:null}; }
   if(kind==="ruta"){ const r=RUTAS.find(x=>x.id===id); return {t:r.q,ctx:`Respuestas en la historia: ${r.pasos.map(([a,t])=>byId[a].n+": "+t).join(" ")}`,autor:null}; }
+  if(kind==="voz"){ const p=byId[id]; return {t:p.n,ctx:"",autor:id,voz:id,tema:tema||""}; }
   return {t:String(id).slice(0,300),ctx:"",autor:null};
 }
-function socPrompt(tp){ return `Eres Sócrates de Atenas y conversas con una persona de hoy dentro de Génesis, una aplicación para estudiar filosofía. Habla en español de México, con calidez e ironía amable.
+function vivo(p){ return /–\s*$/.test(p.d.trim()); }
+var relTxt=id=>[["Maestros",0,"m"],["Discípulos",1,"m"],["Influido por",0,"i"],["Influyó en",1,"i"],["Criticó a",0,"c"],["Criticado por",1,"c"]].map(([lb,d,k])=>{ const ids=rel(id,d,k); return ids.length?lb+": "+ids.map(i=>byId[i].n).join(", "):""; }).filter(Boolean).join(". ");
+function vozPrompt(tp){ const p=byId[tp.voz], es=ESENCIA[p.id]||[], v=vivo(p);
+  const quien=v?`Representas las ideas de ${p.n} (${p.d}; ${p.s}), pensador o pensadora que vive actualmente. Por respeto a una persona viva, NO hables en su nombre ni en primera persona como si fueras ${p.n}: habla como un defensor experto de su pensamiento («Desde la perspectiva de ${p.n}…», «Su argumento sería…»).`
+    :`Eres una simulación de ${p.n} (${p.d}; ${p.s}). Habla en primera persona, con las convicciones, el tono y el estilo de pensamiento de ${p.n}.`;
+  return `${quien}
+Conversas dentro de Génesis, una aplicación para estudiar filosofía, con una persona de hoy que quiere DISCUTIR contigo. Habla en español de México.
+Información de referencia (úsala con precisión, no la recites): ${p.b} Obras principales: ${p.o.join("; ")}. ${es[0]?"La pregunta central: "+es[0]+" ":""}${es[1]?"El gran aporte: "+es[1]+" ":""}${relTxt(p.id)}.
+Reglas del debate:
+- Defiende esas ideas con argumentos propios de la obra de ${p.n}; no le des la razón a la persona solo por complacerla.
+- Si plantea una objeción fuerte, reconócela con honestidad intelectual y responde como lo haría ${p.n} o sus mejores defensores.
+- Puedes mencionar a sus maestros, críticos y rivales y lo que pensaban, de forma general.
+- No inventes citas textuales, fechas ni obras. Si no estás seguro de algo, dilo.
+- Sobre hechos posteriores a su época, razona desde sus principios y aclara que no los conoció.
+- Máximo 120 palabras por turno. Termina cada turno con una pregunta o un desafío para seguir debatiendo.
+- Si la persona pregunta si eres una IA, dilo con claridad.
+${tp.tema?"Tema del debate: "+tp.tema+"\nComienza presentándote en una línea y defiende tu postura sobre ese tema con un argumento claro.":"Comienza presentándote en una línea y lanza una tesis central de tu pensamiento, de forma provocadora, para que la persona la discuta."}`; }
+function socPrompt(tp){ if(tp.voz) return vozPrompt(tp); return `Eres Sócrates de Atenas y conversas con una persona de hoy dentro de Génesis, una aplicación para estudiar filosofía. Habla en español de México, con calidez e ironía amable.
 Tu método es la mayéutica: haz UNA sola pregunta por turno, breve y concreta; parte de lo que la persona responde; pide definiciones y ejemplos; señala con tacto las contradicciones y ayúdala a llegar por sí misma a una idea más clara. No des cátedra: máximo 90 palabras por turno. Si te pide información, dala en dos o tres frases precisas y vuelve a preguntar. Puedes hablar de pensadores posteriores a ti como quien ha escuchado sus ideas, pero no inventes citas, fechas ni datos. Cada cinco o seis intercambios, resume en una frase lo que la persona ha descubierto.
 Tema de la conversación: ${tp.t}.
 ${tp.ctx?"Información de referencia (úsala con precisión, no la recites): "+tp.ctx:""}
@@ -3575,7 +3599,7 @@ async function socAsk(){
   catch(err){ if(soc!==me) return; soc.msgs.pop(); const c=err&&err.code; soc.err=c==="cancelled"?"":c==="not_granted"?"No se dio permiso para usar Claude. Puedes darlo desde el menú de permisos de la página.":c==="rate_limited"?"Demasiadas preguntas seguidas; espera un momento.":"Sócrates no pudo responder: "+(err&&(err.message||c)||"error desconocido"); if(soc.msgs.length===1) soc.msgs.length=1; }
   finally{ if(soc===me){ soc.busy=false; socCtl=null; if(!learn.hidden&&ltab==="socrates") renderSoc(); } }
 }
-function bubble(m){ return `<div class="msg ${m.role==="assistant"?"s":"u"}">${m.role==="assistant"?`<span class="sav">Σ</span>`:""}<p>${esc(m.content||"…").replace(/\n/g,"<br>")}</p></div>`; }
+function bubble(m){ const vz=soc&&soc.tp.voz; return `<div class="msg ${m.role==="assistant"?"s":"u"}">${m.role==="assistant"?(vz?avatar(vz,"sav av"):`<span class="sav">Σ</span>`):""}<p>${esc(m.content||"…").replace(/\n/g,"<br>")}</p></div>`; }
 function paintLast(){ const b=learnBody.querySelector(".chat .msg:last-child p"); if(b){ b.innerHTML=esc(soc.msgs[soc.msgs.length-1].content||"…").replace(/\n/g,"<br>"); const ch=learnBody.querySelector(".chat"); ch.scrollTop=ch.scrollHeight; } }
 function renderSoc(){
   if(ltab!=="socrates"||learn.hidden) return;
@@ -3585,9 +3609,13 @@ function renderSoc(){
       <h3>¿De qué quieres conversar?</h3>
       <div class="tools">${p?`<button class="btn" data-soc-autor="${p.id}">Sobre ${esc(p.n)}</button>`:""}</div>
       <div class="chips" style="margin-top:12px">${RUTAS.map(r=>`<button class="mchip" data-soc-ruta="${r.id}">${esc(r.q)}</button>`).join("")}</div>
-      <form class="socfree" id="socfree"><input id="socq" maxlength="300" placeholder="O escribe tu propia pregunta: ¿qué es la amistad?, ¿vale la pena la verdad?…"><button class="btn" ${sampleFn?"":"disabled"}>Empezar</button></form>`; return; }
+      <form class="socfree" id="socfree"><input id="socq" maxlength="300" placeholder="O escribe tu propia pregunta: ¿qué es la amistad?, ¿vale la pena la verdad?…"><button class="btn" ${sampleFn?"":"disabled"}>Empezar</button></form>
+      <div class="vozbox"><h3>⚔ Discute con un pensador</h3><p class="ctx">Elige a cualquiera de los ${P.length} pensadores y defiende tu punto de vista: responderá con sus propias ideas. Es una simulación con IA basada en su ficha; no son sus palabras textuales.</p>
+      ${p?`<div class="tools"><button class="btn" data-voz="${p.id}">⚔ Discutir con ${esc(p.n)}</button></div>`:""}
+      <form class="socfree" id="vozform"><input id="vozq" list="vozlist" placeholder="Escribe un nombre: Kant, Bacon, Simone de Beauvoir…"><datalist id="vozlist">${[...P].sort((a,b)=>a.n.localeCompare(b.n)).map(x=>`<option value="${esc(x.n)}">`).join("")}</datalist><input id="voztema" maxlength="300" placeholder="Tema (opcional): ¿la inducción basta para conocer?"><button class="btn" ${sampleFn?"":"disabled"}>Discutir</button></form>
+      <p class="status" id="vozst"></p></div>`; return; }
   const sv=soc.tp.autor&&db;
-  learnBody.innerHTML=`<div class="sochd"><span class="rk">Σ Sócrates · ${esc(soc.tp.t)}</span><span class="tools"><button class="x2" data-soc-new="1">Nueva conversación</button>${sv?`<button class="x2" data-soc-save="1">Guardar en mis notas de ${esc(byId[soc.tp.autor].n)}</button>`:""}</span></div>
+  learnBody.innerHTML=`<div class="sochd"><span class="rk">${soc.tp.voz?`⚔ Debate con ${vivo(byId[soc.tp.voz])?"las ideas de ":""}${esc(byId[soc.tp.voz].n)} · simulación con IA`:`Σ Sócrates · ${esc(soc.tp.t)}`}</span><span class="tools"><button class="x2" data-soc-new="1">Nueva conversación</button>${sv?`<button class="x2" data-soc-save="1">Guardar en mis notas de ${esc(byId[soc.tp.autor].n)}</button>`:""}</span></div>
     <div class="chat" aria-live="polite">${soc.msgs.slice(1).map(bubble).join("")}</div>
     ${soc.err?`<p class="status err">${esc(soc.err)}</p>`:""}
     <form class="socfree" id="socform"><textarea id="socin" rows="2" maxlength="1500" placeholder="Tu respuesta…" ${soc.busy?"disabled":""}></textarea><button class="btn" ${soc.busy||!sampleFn?"disabled":""}>Responder</button></form>`;
@@ -3595,11 +3623,13 @@ function renderSoc(){
 }
 learn.addEventListener("submit",e=>{ e.preventDefault();
   if(e.target.id==="socfree"){ const q=document.getElementById("socq").value.trim(); if(q) startSoc(socTopic("libre",q)); }
+  if(e.target.id==="vozform"){ const a=findAuthor(document.getElementById("vozq").value||""), tm=document.getElementById("voztema").value.trim().slice(0,300);
+    if(!a){ document.getElementById("vozst").textContent="No encontré a ese pensador en Génesis. Prueba con otro nombre."; return; } startSoc(socTopic("voz",a.id,tm)); }
   if(e.target.id==="socform"&&soc&&!soc.busy){ const v=document.getElementById("socin").value.trim(); if(!v) return; soc.msgs.push({role:"user",content:v}); socAsk(); } });
 learn.addEventListener("keydown",e=>{ if(e.target.id==="socin"&&e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); document.getElementById("socform").requestSubmit(); } });
 function saveSoc(){ const id=soc.tp.autor; if(!id||!db) return; const n=notes[id]||{estado:"",texto:""};
-  const txt=soc.msgs.slice(1).map(m=>`**${m.role==="assistant"?"Sócrates":"Yo"}:** ${m.content}`).join("\n\n");
-  notes[id]={...n,texto:(n.texto?n.texto+"\n\n":"")+`## Diálogo con Sócrates · ${new Date().toLocaleDateString("es-MX")}\nTema: ${soc.tp.t}\n\n`+txt};
+  const txt=soc.msgs.slice(1).map(m=>`**${m.role==="assistant"?(soc.tp.voz?byId[soc.tp.voz].n+" (simulación)":"Sócrates"):"Yo"}:** ${m.content}`).join("\n\n");
+  notes[id]={...n,texto:(n.texto?n.texto+"\n\n":"")+(soc.tp.voz?`## Debate simulado con ${byId[soc.tp.voz].n} · ${new Date().toLocaleDateString("es-MX")}\n${soc.tp.tema?"Tema: "+soc.tp.tema+"\n":""}\n`:`## Diálogo con Sócrates · ${new Date().toLocaleDateString("es-MX")}\nTema: ${soc.tp.t}\n\n`)+txt};
   saveNote(id); paintStatus(); if(selected===id) renderCard(); toast(`Diálogo guardado en tus notas de ${byId[id].n}.`); }
 learn.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) return; const ds=t.dataset;
   if(ds.back){ sub[ltab]=null; return renderLearn(); }
@@ -3615,6 +3645,8 @@ learn.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) r
   if(ds.socCon) return startSoc(socTopic("con",ds.socCon));
   if(ds.socRuta) return startSoc(socTopic("ruta",ds.socRuta));
   if(ds.socAutor) return startSoc(socTopic("autor",ds.socAutor));
+  if(ds.voz) return startSoc(socTopic("voz",ds.voz));
+  if(ds.vozDeb){ const [did,side]=ds.vozDeb.split(":"), d=DEBATES.find(x=>x.id===did), who=side==="a"?d.a[0]:d.b[0]; return startSoc(socTopic("voz",who,d.q)); }
   if(ds.socNew){ if(socCtl) socCtl.abort(); soc=null; return renderSoc(); }
   if(ds.socSave) return saveSoc();
 });
@@ -3623,14 +3655,15 @@ card.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) re
   if(ds.kcon) return openLearn("conceptos",ds.kcon);
   if(ds.kdeb) return openLearn("debates",ds.kdeb);
   if(ds.kexp) return openLearn("experimentos",ds.kexp);
-  if(ds.ksoc){ openLearn("socrates"); return startSoc(socTopic("autor",ds.ksoc)); } });
+  if(ds.ksoc){ openLearn("socrates"); return startSoc(socTopic("autor",ds.ksoc)); }
+  if(ds.kvoz){ openLearn("socrates"); return startSoc(socTopic("voz",ds.kvoz)); } });
 function thinkHtml(id){
   const cs=CONCEPTOS.filter(c=>c.a.some(a=>a[0]===id)), ds=DEBATES.filter(d=>d.a[0]===id||d.b[0]===id), xs=EXPERIMENTOS.filter(x=>x.a===id);
   return `<div class="sec"><h3>Para pensar</h3>
     ${cs.length?`<div class="kchips"><span class="lbl2">Conceptos</span>${cs.map(c=>`<button class="kchip" data-kcon="${c.id}">◇ ${esc(c.n)}</button>`).join("")}</div>`:""}
     ${ds.length?`<div class="kchips"><span class="lbl2">Debates</span>${ds.map(d=>{ const o=d.a[0]===id?d.b[0]:d.a[0]; return `<button class="kchip" data-kdeb="${d.id}">⚖ vs ${esc(byId[o].n)}</button>`; }).join("")}</div>`:""}
     ${xs.length?`<div class="kchips"><span class="lbl2">Experimentos</span>${xs.map(x=>`<button class="kchip" data-kexp="${x.id}">✧ ${esc(x.n)}</button>`).join("")}</div>`:""}
-    <button class="pathbtn" data-ksoc="${id}">Σ Conversar con Sócrates sobre ${esc(byId[id].n)}</button></div>`;
+    <div class="tools"><button class="pathbtn" data-kvoz="${id}">⚔ Discute con ${vivo(byId[id])?"las ideas de ":""}${esc(byId[id].n)}</button><button class="pathbtn" data-ksoc="${id}">Σ Conversar con Sócrates</button></div></div>`;
 }
 /* ---------- Fase 4: marca, tarjetas, respaldo, editor y acerca de ---------- */
 /* Editor interno: correcciones propias sobre la ficha */
