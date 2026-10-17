@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Génesis: el universo del pensamiento humano. Un mapa interactivo de 184 pensadores, de Tales de Mileto a nuestros días.">
+<meta name="description" content="Génesis: el universo del pensamiento humano. Un mapa interactivo de 186 pensadores, de Tales de Mileto a nuestros días.">
 <meta property="og:title" content="Génesis · El universo del pensamiento humano">
-<meta property="og:description" content="Un mapa interactivo de la historia de la filosofía: 184 pensadores conectados por maestros, influencias y críticas.">
+<meta property="og:description" content="Un mapa interactivo de la historia de la filosofía: 186 pensadores conectados por maestros, influencias y críticas.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://jhenner55.github.io/genesis/tarjeta.png">
 <meta property="og:url" content="https://jhenner55.github.io/genesis/">
 <meta name="theme-color" content="#03050C">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="apple-touch-icon" href="icono-180.png">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Génesis · El universo del pensamiento humano</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -604,7 +605,10 @@ body.routing .mtour{display:none!important}
 }
 html.big .hud{font-size:.8rem}
 @media (max-width:900px){html.big .card,html.big .index{width:auto}html.big .hud{left:16px;max-width:none}html.big .pathbar{left:16px;max-width:none}html.big .routebar{left:12px;right:12px;max-width:none;width:auto}}
-html.web [data-tab="socrates"],html.web [data-ksoc],html.web [data-kvoz],html.web [data-voz-deb],html.web [data-soc-deb],html.web [data-soc-exp],html.web [data-soc-con]{display:none!important}
+.extbox{display:grid;gap:12px}.extbox ol{margin:0;padding-left:20px;font-size:.86rem;line-height:1.55;color:var(--muted)}
+.extbox textarea{width:100%;min-height:150px;font-size:.78rem;line-height:1.45;resize:vertical;font-family:inherit}
+.extbox .tools{flex-wrap:wrap}.extbox a.btn{text-decoration:none;display:inline-flex;align-items:center}
+#instBox{display:none}html.web #instBox{display:block}
 .vozbox{margin-top:22px;padding:16px;border-radius:12px;border:1px solid rgba(255,216,115,.35);background:linear-gradient(160deg,rgba(255,216,115,.08),rgba(8,12,26,.6))}
 .vozbox h3{margin-top:0!important}
 .vozbox .socfree{flex-wrap:wrap}.vozbox .socfree input{min-width:200px}
@@ -733,6 +737,7 @@ html.lite *{transition-duration:0s!important}
   <details class="story"><summary>Ver autores y licencias (<span id="credN"></span>)</summary><ul class="refs" id="credList"></ul></details>
   <h3>Tus datos</h3>
   <p class="lead" id="abData"></p>
+  <div id="instBox"><h3>Úsala como app</h3><p class="lead" id="instTxt">Puedes instalar Génesis en tu celular o computadora: abre en una ventana propia y funciona sin internet una vez que la abriste.</p><div class="tools"><button class="btn" id="instBtn" hidden>Instalar Génesis</button></div></div>
   <p class="foot">Concepto y curaduría: Jhenner Flores Mendoza · Desarrollado con Claude · Versión 1.0</p>
 </div></div>
 <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
@@ -3598,7 +3603,19 @@ Tu método es la mayéutica: haz UNA sola pregunta por turno, breve y concreta; 
 Tema de la conversación: ${tp.t}.
 ${tp.ctx?"Información de referencia (úsala con precisión, no la recites): "+tp.ctx:""}
 Comienza tú: saluda en una sola línea y haz tu primera pregunta.`; }
-function startSoc(tp){ if(socCtl) socCtl.abort(); soc={tp,msgs:[{role:"user",content:socPrompt(tp)}],busy:false,err:""}; ltab="socrates"; renderLearn(); socAsk(); }
+function startSoc(tp){ if(socCtl) socCtl.abort();
+  if(!sampleFn&&WEB){ soc={tp,msgs:[{role:"user",content:socPrompt(tp).replace("dentro de Génesis, una aplicación para estudiar filosofía","que usa Génesis, una aplicación para estudiar filosofía")}],ext:true,busy:false,err:""}; ltab="socrates"; renderLearn(); return; }
+  soc={tp,msgs:[{role:"user",content:socPrompt(tp)}],busy:false,err:""}; ltab="socrates"; renderLearn(); socAsk(); }
+let instEv=null;
+if(WEB){ const ib=document.getElementById("instBtn"), it=document.getElementById("instTxt"), ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  if(ios) it.textContent+=" En iPhone: toca Compartir y luego «Agregar a pantalla de inicio».";
+  if(matchMedia("(display-mode: standalone)").matches) it.textContent="Génesis ya está instalada en este dispositivo y funciona sin internet.";
+  addEventListener("beforeinstallprompt",e=>{ e.preventDefault(); instEv=e; ib.hidden=false; });
+  ib.onclick=async()=>{ if(!instEv) return; instEv.prompt(); const r=await instEv.userChoice.catch(()=>null); instEv=null; ib.hidden=true; if(r&&r.outcome==="accepted") toast("Génesis quedó instalada."); };
+  addEventListener("appinstalled",()=>{ ib.hidden=true; }); }
+const AI_EXT=[["Claude","https://claude.ai/new?q="],["ChatGPT","https://chatgpt.com/?q="],["Gemini","https://gemini.google.com/app",1]];
+function extLinks(txt){ const q=encodeURIComponent(txt); return AI_EXT.map(([n,u,noq])=>`<a class="btn ghost" target="_blank" rel="noopener noreferrer" href="${noq||q.length>6000?u.split("?")[0]:u+q}">Abrir en ${n} ↗</a>`).join(""); }
+async function copyText(txt){ try{ await navigator.clipboard.writeText(txt); return true; }catch(_){ const ta=document.getElementById("extprompt"); if(ta){ ta.focus(); ta.select(); try{ return document.execCommand("copy"); }catch(__){} } return false; } }
 async function socAsk(){
   if(!sampleFn){ soc.err=WEB?"Sócrates con IA solo está disponible en la versión de Génesis dentro de Claude.":"Sócrates se activa al abrir Génesis en claude.ai con tu cuenta."; return renderSoc(); }
   soc.busy=true; soc.err=""; soc.msgs.push({role:"assistant",content:""}); renderSoc(); socCtl=new AbortController(); const me=soc, last=soc.msgs[soc.msgs.length-1];
@@ -3613,15 +3630,22 @@ function renderSoc(){
   if(ltab!=="socrates"||learn.hidden) return;
   if(!soc){ const p=byId[selected];
     learnBody.innerHTML=`<div class="socintro"><span class="socav">Σ</span><div><h3 class="dq">Conversa con Sócrates</h3><p class="ctx">No te dará respuestas: te hará preguntas hasta que descubras lo que piensas. Es una simulación con IA basada en el método socrático; contrasta lo que diga con las fuentes.</p></div></div>
-      ${sampleFn?"":`<p class="ainote">${WEB?"Sócrates con IA solo está disponible en la versión de Génesis dentro de Claude. Aquí puedes explorar todo lo demás.":"Sócrates se activa al abrir Génesis en claude.ai con tu cuenta."}</p>`}
+      ${sampleFn?"":`<p class="ainote">${WEB?"En la versión web, Génesis prepara la conversación y tú la continúas en tu asistente de IA (Claude, ChatGPT o Gemini).":"Sócrates se activa al abrir Génesis en claude.ai con tu cuenta."}</p>`}
       <h3>¿De qué quieres conversar?</h3>
       <div class="tools">${p?`<button class="btn" data-soc-autor="${p.id}">Sobre ${esc(p.n)}</button>`:""}</div>
       <div class="chips" style="margin-top:12px">${RUTAS.map(r=>`<button class="mchip" data-soc-ruta="${r.id}">${esc(r.q)}</button>`).join("")}</div>
-      <form class="socfree" id="socfree"><input id="socq" maxlength="300" placeholder="O escribe tu propia pregunta: ¿qué es la amistad?, ¿vale la pena la verdad?…"><button class="btn" ${sampleFn?"":"disabled"}>Empezar</button></form>
+      <form class="socfree" id="socfree"><input id="socq" maxlength="300" placeholder="O escribe tu propia pregunta: ¿qué es la amistad?, ¿vale la pena la verdad?…"><button class="btn" ${sampleFn||WEB?"":"disabled"}>Empezar</button></form>
       <div class="vozbox"><h3>⚔ Discute con un pensador</h3><p class="ctx">Elige a cualquiera de los ${P.length} pensadores y defiende tu punto de vista: responderá con sus propias ideas. Es una simulación con IA basada en su ficha; no son sus palabras textuales.</p>
       ${p?`<div class="tools"><button class="btn" data-voz="${p.id}">⚔ Discutir con ${esc(p.n)}</button></div>`:""}
-      <form class="socfree" id="vozform"><input id="vozq" list="vozlist" placeholder="Escribe un nombre: Kant, Bacon, Simone de Beauvoir…"><datalist id="vozlist">${[...P].sort((a,b)=>a.n.localeCompare(b.n)).map(x=>`<option value="${esc(x.n)}">`).join("")}</datalist><input id="voztema" maxlength="300" placeholder="Tema (opcional): ¿la inducción basta para conocer?"><button class="btn" ${sampleFn?"":"disabled"}>Discutir</button></form>
+      <form class="socfree" id="vozform"><input id="vozq" list="vozlist" placeholder="Escribe un nombre: Kant, Bacon, Simone de Beauvoir…"><datalist id="vozlist">${[...P].sort((a,b)=>a.n.localeCompare(b.n)).map(x=>`<option value="${esc(x.n)}">`).join("")}</datalist><input id="voztema" maxlength="300" placeholder="Tema (opcional): ¿la inducción basta para conocer?"><button class="btn" ${sampleFn||WEB?"":"disabled"}>Discutir</button></form>
       <p class="status" id="vozst"></p></div>`; return; }
+  if(soc.ext){ const txt=soc.msgs[0].content, vz=soc.tp.voz;
+    learnBody.innerHTML=`<div class="sochd"><span class="rk">${vz?`⚔ Debate con ${vivo(byId[vz])?"las ideas de ":""}${esc(byId[vz].n)}`:`Σ Sócrates · ${esc(soc.tp.t)}`}</span><span class="tools"><button class="x2" data-soc-new="1">Elegir otro tema</button></span></div>
+    <div class="extbox"><p class="ctx">Génesis ya preparó la conversación: el personaje, su información de referencia y las reglas del diálogo. Continúala en el asistente de IA que prefieras.</p>
+    <ol><li>Copia las instrucciones.</li><li>Abre tu asistente de IA y pégalas como primer mensaje (en Claude y ChatGPT pueden ir ya escritas).</li><li>Responde y debate. Recuerda que es una simulación: contrasta lo que diga con las fuentes.</li></ol>
+    <div class="tools"><button class="btn" data-copy-prompt="1">⧉ Copiar instrucciones</button>${extLinks(txt)}</div>
+    <p class="status" id="copyst" aria-live="polite"></p>
+    <details><summary>Ver las instrucciones</summary><textarea id="extprompt" readonly>${esc(txt)}</textarea></details></div>`; return; }
   const sv=soc.tp.autor&&db;
   learnBody.innerHTML=`<div class="sochd"><span class="rk">${soc.tp.voz?`⚔ Debate con ${vivo(byId[soc.tp.voz])?"las ideas de ":""}${esc(byId[soc.tp.voz].n)} · simulación con IA`:`Σ Sócrates · ${esc(soc.tp.t)}`}</span><span class="tools"><button class="x2" data-soc-new="1">Nueva conversación</button>${sv?`<button class="x2" data-soc-save="1">Guardar en mis notas de ${esc(byId[soc.tp.autor].n)}</button>`:""}</span></div>
     <div class="chat" aria-live="polite">${soc.msgs.slice(1).map(bubble).join("")}</div>
@@ -3657,6 +3681,7 @@ learn.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) r
   if(ds.vozDeb){ const [did,side]=ds.vozDeb.split(":"), d=DEBATES.find(x=>x.id===did), who=side==="a"?d.a[0]:d.b[0]; return startSoc(socTopic("voz",who,d.q)); }
   if(ds.socNew){ if(socCtl) socCtl.abort(); soc=null; return renderSoc(); }
   if(ds.socSave) return saveSoc();
+  if(ds.copyPrompt&&soc&&soc.ext){ copyText(soc.msgs[0].content).then(ok=>{ const s=document.getElementById("copyst"); if(s) s.textContent=ok?"Instrucciones copiadas. Pégalas en tu asistente de IA.":"No se pudo copiar automáticamente: abre «Ver las instrucciones» y cópialas a mano."; }); }
 });
 /* Ficha: para pensar */
 card.addEventListener("click",e=>{ const t=e.target.closest("button"); if(!t) return; const ds=t.dataset;
@@ -3839,6 +3864,7 @@ function localDB(){ const KEY="genesis_db"; let S={}; try{ S=JSON.parse(localSto
 const webDownloads={save:async({filename,data})=>{ const blob=data instanceof Blob?data:new Blob([data],{type:"application/octet-stream"}); const u=URL.createObjectURL(blob), a=document.createElement("a"); a.href=u; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),4000); }};
 (async()=>{
   if(WEB){ db=localDB(); downloads=webDownloads; }
+  if(WEB&&"serviceWorker" in navigator&&location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
   else {
   if(!window.claude?.use) return;
   db=await claude.use("db"); assets=PUBLICA?null:await claude.use("assets"); downloads=await claude.use("downloads"); sampleFn=await claude.use("sample");
