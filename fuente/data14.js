@@ -1,0 +1,70 @@
+// Lote 4: filosofías de Asia
+ERAS.ori={n:"Filosofías de Asia",v:"--era-ori"};
+P.push(
+ {id:"laozi",n:"Laozi",g:"老子",l:"zh",en:"Laozi",y:-570,d:"s. VI a.C. (según la tradición)",e:"ori",s:"Taoísmo",
+  b:"Figura semilegendaria a quien la tradición atribuye el Tao Te Ching; según el relato, fue archivero de la corte de Zhou. Enseñó que el Tao, el camino o principio del universo, no puede nombrarse, y propuso el wu wei: actuar sin forzar, en armonía con la naturaleza.",
+  o:["Tao Te Ching (Libro del camino y de la virtud)"]},
+ {id:"confucio",n:"Confucio",g:"孔子",l:"zh",en:"Confucius",y:-551,d:"551 – 479 a.C.",e:"ori",s:"Confucianismo",
+  b:"Maestro y funcionario del estado de Lu. Propuso un orden social basado en la virtud personal, el respeto a los ritos y relaciones justas entre gobernantes y gobernados, padres e hijos. Sus enseñanzas, reunidas por sus discípulos en las Analectas, moldearon la cultura china durante dos milenios.",
+  o:["Analectas (Lunyu, compiladas por sus discípulos)"]},
+ {id:"buda",n:"Buda",g:"Siddhārtha Gautama",l:"sa",en:"Buddha",y:-480,d:"c. s. V a.C.",e:"ori",s:"Budismo",
+  b:"Príncipe del norte de la India que renunció a su vida de lujo para buscar el fin del sufrimiento. Tras alcanzar el despertar enseñó las Cuatro Nobles Verdades y el Óctuple Sendero, un camino medio entre el placer y la ascesis. Sus enseñanzas se transmitieron oralmente durante siglos.",
+  o:["Enseñanzas recogidas en el Canon Pali (Tipitaka)","Dhammapada"]},
+ {id:"mozi",n:"Mozi",g:"墨子",l:"zh",en:"Mozi",y:-470,d:"c. 470 – 391 a.C.",e:"ori",s:"Moísmo",
+  b:"Pensador chino, crítico de los confucianos. Defendió el «amor universal», imparcial hacia todos; rechazó la guerra ofensiva y el lujo de los rituales, y juzgó las doctrinas por sus consecuencias para el bienestar del pueblo.",
+  o:["Mozi"]},
+ {id:"mencio",n:"Mencio",g:"孟子",l:"zh",en:"Mencius",y:-372,d:"c. 372 – 289 a.C.",e:"ori",s:"Confucianismo",
+  b:"El gran continuador de Confucio. Sostuvo que la naturaleza humana es buena: todos tenemos «brotes» de compasión, vergüenza, respeto y discernimiento que deben cultivarse. Defendió que el pueblo puede retirar su apoyo a un gobernante injusto.",
+  o:["Mencio (Mengzi)"]},
+ {id:"zhuangzi",n:"Zhuangzi",g:"莊子",l:"zh",en:"Zhuangzi",y:-369,d:"c. 369 – 286 a.C.",e:"ori",s:"Taoísmo",
+  b:"Pensador taoísta, autor de un libro lleno de parábolas y humor. Cuestionó la certeza de nuestras distinciones —en el célebre sueño de la mariposa no sabe si es Zhuangzi que soñó ser mariposa o una mariposa que sueña ser Zhuangzi— y propuso vivir con espontaneidad y libertad.",
+  o:["Zhuangzi"]},
+ {id:"xunzi",n:"Xunzi",g:"荀子",l:"zh",en:"Xunzi",y:-310,d:"c. 310 – 235 a.C.",e:"ori",s:"Confucianismo",
+  b:"Confuciano realista. Frente a Mencio, sostuvo que la naturaleza humana tiende al egoísmo y que la bondad es fruto del esfuerzo, el aprendizaje y los ritos. Entre sus alumnos hubo pensadores de la escuela legista.",
+  o:["Xunzi"]},
+ {id:"nagarjuna",n:"Nagarjuna",g:"नागार्जुन",l:"sa",en:"Nagarjuna",y:150,d:"c. 150 – 250 d.C.",e:"ori",s:"Budismo Madhyamaka",
+  b:"Monje y filósofo indio, fundador de la escuela del camino medio (Madhyamaka). Sostuvo que todas las cosas carecen de existencia propia: existen solo en dependencia de otras. A esa ausencia de esencia la llamó vacuidad (śūnyatā).",
+  o:["Versos fundamentales del camino medio (Mūlamadhyamakakārikā)"]},
+ {id:"shankara",n:"Shankara",g:"Ādi Śaṅkara",l:"sa",en:"Adi Shankara",y:788,d:"c. 788 – 820",e:"ori",s:"Advaita Vedanta",
+  b:"Filósofo indio que sistematizó el Advaita Vedanta, la escuela de la no dualidad. Sostuvo que la realidad última, Brahman, es una sola, y que el yo profundo (Atman) es idéntico a ella; la multiplicidad del mundo es apariencia (maya).",
+  o:["Comentario a los Brahma Sutras","Comentarios a las Upanishads y al Bhagavad Gita"]},
+ {id:"zhu_xi",n:"Zhu Xi",g:"朱熹",l:"zh",en:"Zhu Xi",y:1130,d:"1130 – 1200",e:"ori",s:"Neoconfucianismo",
+  b:"Gran sistematizador del neoconfucianismo. Distinguió entre el principio (li), que da forma y orden a las cosas, y la energía material (qi). Sus comentarios a los Cuatro Libros fueron la base de los exámenes imperiales chinos durante siglos.",
+  o:["Comentarios a los Cuatro Libros","Reflexiones sobre las cosas a la mano (con Lü Zuqian)"]},
+ {id:"dogen",n:"Dōgen",g:"道元",l:"ja",en:"Dogen",y:1200,d:"1200 – 1253",e:"ori",s:"Budismo zen (Sōtō)",
+  b:"Monje japonés que viajó a China y fundó en Japón la escuela zen Sōtō. Enseñó que la meditación sentada (zazen) no es un medio para alcanzar la iluminación, sino su expresión misma, y escribió reflexiones profundas sobre el ser y el tiempo.",
+  o:["Shōbōgenzō (Tesoro del verdadero ojo del Dharma)"]},
+ {id:"wang_yangming",n:"Wang Yangming",g:"王陽明",l:"zh",en:"Wang Yangming",y:1472,d:"1472 – 1529",e:"ori",s:"Neoconfucianismo (escuela de la mente)",
+  b:"Funcionario, general y filósofo chino. Frente a Zhu Xi, sostuvo que el principio no está en las cosas externas sino en la propia mente, que todos poseemos un conocimiento innato del bien y que conocer y actuar son inseparables.",
+  o:["Instrucciones para la vida práctica (Chuanxi lu)"]},
+ {id:"nishida",n:"Kitarō Nishida",g:"西田幾多郎",l:"ja",en:"Kitaro Nishida",y:1870,d:"1870 – 1945",e:"ori",s:"Escuela de Kioto",
+  b:"Fundador de la escuela de Kioto. Unió el pensamiento zen con la filosofía occidental, de William James a Hegel, a partir de la noción de «experiencia pura», anterior a la separación entre sujeto y objeto, y de una «lógica del lugar» (basho).",
+  o:["Indagación del bien","Lógica del lugar"]}
+);
+E.push(
+ ["laozi","zhuangzi","i"],["confucio","mencio","i"],["confucio","xunzi","i"],["mencio","xunzi","c"],["confucio","mozi","c"],
+ ["buda","nagarjuna","i"],["nagarjuna","shankara","c"],["buda","dogen","i"],["nagarjuna","dogen","i"],["zhuangzi","dogen","i"],
+ ["confucio","zhu_xi","i"],["mencio","zhu_xi","i"],["zhu_xi","wang_yangming","c"],["mencio","wang_yangming","i"],
+ ["dogen","nishida","i"],["james","nishida","i"],["hegel","nishida","i"],
+ ["buda","schopenhauer","i"],["confucio","leibniz","i"],["laozi","heidegger","i"],["dogen","han","i"]
+);
+Object.assign(RAMA_DE,{laozi:"me et po",confucio:"et po ed",buda:"et me re",mozi:"et po lo",mencio:"et po",zhuangzi:"me co et",xunzi:"et po",
+ nagarjuna:"me co lo re",shankara:"me re",zhu_xi:"me et ed",dogen:"me re",wang_yangming:"et co",nishida:"me co re"});
+Object.assign(ALIAS,{laozi:["Laozi","Lao Tse","Lao-Tse","Lao Tzu"],confucio:["Confucio","Confucius"],buda:["Buda","Buddha","Siddharta","Gautama"],
+ mencio:["Mencio","Mencius","Mengzi"],zhuangzi:["Zhuangzi","Chuang Tzu"],nagarjuna:["Nagarjuna","Nāgārjuna"],shankara:["Shankara","Śaṅkara","Sankara"],
+ zhu_xi:["Zhu Xi","Chu Hsi"],dogen:["Dōgen","Dogen"],wang_yangming:["Wang Yangming"],nishida:["Nishida"]});
+Object.assign(ESENCIA,{
+ laozi:["¿Cuál es el camino que sigue el universo y cómo vivir en armonía con él?","Concibió el Tao como principio innombrable de todo y propuso el wu wei, la acción sin forzar.","El taoísmo es una de las grandes tradiciones filosóficas de China; Heidegger trabajó en una traducción del Tao Te Ching."],
+ confucio:["¿Cómo crear una sociedad armoniosa a partir de personas virtuosas?","Puso en el centro la humanidad (ren), el ritual (li) y el cultivo de uno mismo como base del buen gobierno.","Fundó la tradición filosófica más influyente de Asia oriental; Leibniz y los ilustrados europeos lo leyeron con admiración."],
+ buda:["¿Cuál es el origen del sufrimiento y cómo terminar con él?","Enseñó que el sufrimiento nace del deseo y del apego a un yo permanente, y propuso un camino medio para liberarse.","El budismo es una de las grandes tradiciones filosóficas del mundo; influyó en Schopenhauer y dialoga hoy con la filosofía de la mente."],
+ mozi:["¿Por qué amar solo a los cercanos y no a todos por igual?","Propuso el amor universal e imparcial y una ética que juzga las acciones por sus consecuencias para el pueblo.","Es considerado uno de los primeros consecuencialistas de la historia; su escuela desarrolló además la lógica china."],
+ mencio:["¿Es buena la naturaleza humana?","Sostuvo que la naturaleza humana es buena y tiene brotes de virtud que deben cultivarse.","Es el «segundo sabio» del confucianismo; su visión del ser humano guió al neoconfucianismo."],
+ zhuangzi:["¿Cómo podemos estar seguros de lo que es real?","Mostró la relatividad de nuestras distinciones y propuso una vida libre y espontánea, en armonía con el Tao.","Es un clásico de la filosofía china y una de las fuentes del budismo zen."],
+ xunzi:["¿Cómo se vuelve bueno un ser humano que tiende al egoísmo?","Sostuvo que la bondad no es innata, sino fruto del aprendizaje, los ritos y el esfuerzo constante.","Su debate con Mencio sobre la naturaleza humana es uno de los grandes debates de la filosofía china."],
+ nagarjuna:["¿Existe algo por sí mismo, independiente de todo lo demás?","Desarrolló la doctrina de la vacuidad: nada tiene esencia propia, todo surge en dependencia de otras cosas.","Es el filósofo más influyente del budismo después de Buda; su dialéctica se compara con la de los escépticos y con Wittgenstein."],
+ shankara:["¿Hay una diferencia real entre el yo y lo absoluto?","Sistematizó la no dualidad: el yo profundo (Atman) es idéntico a la realidad última (Brahman).","Es el filósofo más influyente del hinduismo; su pensamiento suele compararse con el de Parménides y Spinoza."],
+ zhu_xi:["¿Qué principio ordena el mundo y la conducta humana?","Sistematizó el neoconfucianismo con la distinción entre principio (li) y energía material (qi).","Su interpretación fue la ortodoxia oficial en China, Corea y Japón durante siglos."],
+ dogen:["¿Qué relación hay entre el ser, el tiempo y la práctica?","Enseñó que práctica e iluminación son lo mismo y que el ser es tiempo (uji).","Es el gran filósofo del budismo japonés; su reflexión sobre ser y tiempo suele compararse con la de Heidegger."],
+ wang_yangming:["¿Dónde está el principio del bien: en las cosas o en la mente?","Sostuvo que el conocimiento del bien es innato en la mente y que conocer y actuar son una misma cosa.","Fundó la escuela de la mente del neoconfucianismo, muy influyente en China y Japón."],
+ nishida:["¿Qué hay antes de la separación entre sujeto y objeto?","Desarrolló la idea de experiencia pura y una lógica del lugar que unen el zen con la filosofía occidental.","Fundó la escuela de Kioto, la primera gran filosofía japonesa en diálogo con Occidente."]
+});

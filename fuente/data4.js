@@ -1,0 +1,36 @@
+P.push(
+ {id:"comte",n:"Auguste Comte",g:"Auguste Comte",l:"fr",en:"Auguste Comte",y:1798,d:"1798 – 1857",e:"s19",s:"Positivismo",
+  b:"Fundador del positivismo y creador de la palabra «sociología». Formuló la ley de los tres estadios: teológico, metafísico y positivo. Sostuvo que solo la ciencia basada en hechos observables produce conocimiento válido y propuso una religión de la humanidad. Su influencia en América Latina fue enorme.",
+  o:["Curso de filosofía positiva","Discurso sobre el espíritu positivo","Sistema de política positiva"]},
+ {id:"bello",n:"Andrés Bello",g:"Andrés Bello",l:"es",en:"Andres Bello",y:1781,d:"1781 – 1865",e:"lat",s:"Humanismo republicano",
+  b:"Humanista caraqueño, maestro de Simón Bolívar en su juventud. Vivió casi veinte años en Londres y después en Chile, donde fue el primer rector de la Universidad de Chile y redactó el Código Civil. Su Gramática de la lengua castellana buscó preservar la unidad del idioma en América.",
+  o:["Gramática de la lengua castellana destinada al uso de los americanos","Filosofía del entendimiento","Silvas americanas"]},
+ {id:"barreda",n:"Gabino Barreda",g:"Gabino Barreda",l:"es",en:"Gabino Barreda",y:1818,d:"1818 – 1881",e:"lat",s:"Positivismo mexicano",
+  b:"Médico poblano que asistió en París a los cursos de Auguste Comte. Con Benito Juárez fundó en 1867 la Escuela Nacional Preparatoria y llevó el positivismo a la educación pública mexicana. Su lema «libertad, orden y progreso» marcó la ideología del porfiriato, contra la que reaccionó el Ateneo de la Juventud.",
+  o:["Oración cívica (1867)","Opúsculos, discusiones y discursos"]},
+ {id:"marti",n:"José Martí",g:"José Martí",l:"es",en:"Jose Marti",y:1853,d:"1853 – 1895",e:"lat",s:"Modernismo e independentismo",
+  b:"Poeta, periodista y revolucionario cubano. Vivió exiliado en España, México, Guatemala, Venezuela y Nueva York. En Nuestra América llamó a los pueblos latinoamericanos a conocerse y gobernarse desde su propia realidad. Fundó el Partido Revolucionario Cubano y murió en combate en Dos Ríos.",
+  o:["Nuestra América","Versos sencillos","Ismaelillo","La Edad de Oro"]},
+ {id:"rodo",n:"José Enrique Rodó",g:"José Enrique Rodó",l:"es",en:"Jose Enrique Rodo",y:1871,d:"1871 – 1917",e:"lat",s:"Arielismo",
+  b:"Ensayista uruguayo. En Ariel (1900) exhortó a la juventud latinoamericana a cultivar el espíritu, la belleza y el desinterés frente al utilitarismo que veía encarnado en Estados Unidos. El arielismo inspiró a toda una generación, incluido el Ateneo de la Juventud mexicano.",
+  o:["Ariel","Motivos de Proteo","El mirador de Próspero"]},
+ {id:"reyes",n:"Alfonso Reyes",g:"Alfonso Reyes",l:"es",en:"Alfonso Reyes",y:1889,d:"1889 – 1959",e:"lat",s:"Ateneo de la Juventud",
+  b:"Regiomontano, miembro del Ateneo de la Juventud. Vivió en Madrid y fue diplomático en Argentina y Brasil. Estudió la cultura griega y la teoría literaria, y presidió El Colegio de México, heredero de La Casa de España que acogió a los exiliados españoles.",
+  o:["Visión de Anáhuac","El deslinde","La crítica en la edad ateniense","Cartilla moral"]},
+ {id:"ardao",n:"Arturo Ardao",g:"Arturo Ardao",l:"es",en:"Arturo Ardao",y:1912,d:"1912 – 2003",e:"lat",s:"Historia de las ideas",
+  b:"Historiador de las ideas uruguayo. Estudió el espiritualismo y el positivismo en Uruguay y rastreó el origen de la expresión «América Latina». Tras el golpe de Estado de 1973 se exilió en Venezuela, donde continuó su obra.",
+  o:["Espiritualismo y positivismo en el Uruguay","Génesis de la idea y el nombre de América Latina","Filosofía de lengua española"]},
+ {id:"paz",n:"Octavio Paz",g:"Octavio Paz",l:"es",en:"Octavio Paz",y:1914,d:"1914 – 1998",e:"lat",s:"Ensayo y poesía",
+  b:"Poeta y ensayista mexicano, Premio Nobel de Literatura en 1990. En El laberinto de la soledad exploró la identidad mexicana y retomó la pregunta de Samuel Ramos. Fue embajador en la India y renunció tras la matanza de Tlatelolco de 1968.",
+  o:["El laberinto de la soledad","El arco y la lira","Piedra de sol","Sor Juana Inés de la Cruz o las trampas de la fe"]},
+ {id:"castellanos",n:"Rosario Castellanos",g:"Rosario Castellanos",l:"es",en:"Rosario Castellanos",y:1925,d:"1925 – 1974",e:"lat",s:"Feminismo y literatura",
+  b:"Escritora mexicana que creció en Comitán, Chiapas. Su tesis de filosofía Sobre cultura femenina (1950) preguntó por qué las mujeres habían sido excluidas de la creación cultural. Retrató la vida de los pueblos indígenas de Chiapas y fue embajadora en Israel, donde murió.",
+  o:["Sobre cultura femenina","Balún Canán","Oficio de tinieblas","Mujer que sabe latín"]}
+);
+E.push(
+ ["comte","barreda","m"],
+ ["hume","comte","i"],["comte","mill","i"],["locke","bello","i"],["barreda","caso","i"],
+ ["marti","zea","i"],["rodo","vasconcelos","i"],["rodo","reyes","i"],["aristoteles","reyes","i"],
+ ["reyes","paz","i"],["ramos","paz","i"],["sor_juana","paz","i"],["rodo","ardao","i"],["zea","ardao","i"],
+ ["beauvoir","castellanos","i"],["comte","ardao","i"]
+);
